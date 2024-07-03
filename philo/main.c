@@ -5,15 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sandre-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 14:25:32 by sandre-a          #+#    #+#             */
-/*   Updated: 2024/07/01 20:08:06 by sandre-a         ###   ########.fr       */
+/*   Created: 2024/07/03 16:01:45 by sandre-a          #+#    #+#             */
+/*   Updated: 2024/07/03 16:01:53 by sandre-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
 #include "philosophers.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	ft_printf("********************************");
+    (void) argc;
+    for (int i = 0; i < argc; ++i) {
+        ft_printf("%s\n", argv[i]);
+    }
 	return (0);
 }
