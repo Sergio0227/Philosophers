@@ -6,7 +6,7 @@
 /*   By: sandre-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 20:06:57 by sandre-a          #+#    #+#             */
-/*   Updated: 2024/07/13 14:38:09 by sandre-a         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:09:58 by sandre-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <stdint.h>
+# include <stdio.h>
 # include <sys/time.h>
 
 # define RST "\033[0m"
@@ -28,6 +30,8 @@
 # define CYAN "\033[36m"
 # define WHITE "\033[37m"
 
+struct s_data;
+
 typedef struct s_fork
 {
 	pthread_mutex_t	fork;
@@ -36,7 +40,8 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	int				id;
+	struct s_data	*t;
+	int				index;
 	pthread_t		pthread_id;
 	t_fork			*left_fork;
 	t_fork			*right_fork;
@@ -58,8 +63,9 @@ typedef struct s_data
 	t_philo			*philos;
 }					t_data;
 
-int				error(char *error);
-long				ft_atol(const char *nptr);
+int					error(char *error);
+long				costum_atol(const char *nptr);
 int					check_input(char **argv, t_data *t);
+int					data_init(t_data *table);
 
 #endif
