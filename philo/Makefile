@@ -1,5 +1,7 @@
 # Define variables
-SRC = main.c
+SRC =	main.c \
+		utils.c
+		
 OBJS = ${SRC:.c=.o}
 NAME = philo
 CC = cc
@@ -34,7 +36,7 @@ libft:
 	@echo "LIBFT MADE";
 
 .c.o: 
-	${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
+	${CC} -g -c $< -o ${<:.c=.o}
 
 
 run: all
