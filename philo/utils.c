@@ -6,7 +6,7 @@
 /*   By: sandre-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 13:06:25 by sandre-a          #+#    #+#             */
-/*   Updated: 2024/07/14 17:07:52 by sandre-a         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:59:09 by sandre-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_input(char **argv, t_data *t)
 		t->max_meals = -1;
 	if (t->nbr_philo > INT_MAX || t->t_die > INT_MAX || t->t_eat > INT_MAX
 		|| t->t_sleep > INT_MAX)
-		return a(error("Invalid input - Not a number or greater than INT_MAX"));
+		return (error("Invalid input - Not a number or greater than INT_MAX"));
 	if (t->nbr_philo <= 0 || t->t_die <= 0 || t->t_eat <= 0 || t->t_sleep <= 0)
 		return (error("Negative or null numbers not llowed"));
 	if (t->t_die < 60 || t->t_eat < 60 || t->t_sleep < 60)
@@ -62,4 +62,10 @@ int	check_input(char **argv, t_data *t)
 	t->t_eat *= 1000;
 	t->t_sleep *= 1000;
 	return (0);
+}
+
+int	error(char *error)
+{
+	printf(RED "❌%s❌\n" RST, error);
+	return (1);
 }

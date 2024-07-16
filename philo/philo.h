@@ -6,7 +6,7 @@
 /*   By: sandre-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 20:06:57 by sandre-a          #+#    #+#             */
-/*   Updated: 2024/07/14 17:09:58 by sandre-a         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:06:13 by sandre-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	struct s_data	*t;
-	int				index;
+	int				id;
 	pthread_t		pthread_id;
 	t_fork			*left_fork;
 	t_fork			*right_fork;
@@ -61,6 +61,7 @@ typedef struct s_data
 	long			dinner_time;
 	t_fork			*forks;
 	t_philo			*philos;
+	pthread_mutex_t lock;
 }					t_data;
 
 int					error(char *error);

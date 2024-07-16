@@ -1,7 +1,8 @@
 # Define variables
 SRC =	main.c \
-		utils.c
-		
+		utils.c \
+		mutex_get_set.c
+
 OBJS = ${SRC:.c=.o}
 NAME = philo
 CC = cc
