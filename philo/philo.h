@@ -6,7 +6,7 @@
 /*   By: sandre-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 20:06:57 by sandre-a          #+#    #+#             */
-/*   Updated: 2024/07/15 18:06:13 by sandre-a         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:35:15 by sandre-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_philo
 	int				nbr_meals;
 	long			last_meal;
 	bool			full;
-
 }					t_philo;
 
 typedef struct s_data
@@ -61,12 +60,29 @@ typedef struct s_data
 	long			dinner_time;
 	t_fork			*forks;
 	t_philo			*philos;
-	pthread_mutex_t lock;
+	pthread_mutex_t	lock;
+	bool			threads_ready;
+	bool			dinner_end;
 }					t_data;
+
+typedef enum e_time_code
+{
+	SECOND,
+	MILLISECOND,
+	MICROSECOND,
+}					t_time_code;
 
 int					error(char *error);
 long				costum_atol(const char *nptr);
 int					check_input(char **argv, t_data *t);
 int					data_init(t_data *table);
+void				set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
+bool				get_bool(pthread_mutex_t *mutex, bool *value);
+long				get_long(pthread_mutex_t *mutex, long *value);
+void				set_long(pthread_mutex_t *mutex, long *dest, long value);
+void				wait_all_threads(t_data *t);
+long				gettime(t_time_code time_code);
+void				start_dinner(t_data *t);
+void				*simulation(void *arg);
 
 #endif

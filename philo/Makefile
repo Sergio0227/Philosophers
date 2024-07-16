@@ -40,9 +40,6 @@ libft:
 	${CC} -g -c $< -o ${<:.c=.o}
 
 
-run: all
-	@./philo;
-
 
 clean:
 	@${MAKE} -C ${LIBFT_PATH} clean > /dev/null 2>&1
@@ -59,4 +56,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re

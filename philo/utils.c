@@ -6,7 +6,7 @@
 /*   By: sandre-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 13:06:25 by sandre-a          #+#    #+#             */
-/*   Updated: 2024/07/15 17:59:09 by sandre-a         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:58:54 by sandre-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,31 @@ int	check_input(char **argv, t_data *t)
 		|| t->t_sleep > INT_MAX)
 		return (error("Invalid input - Not a number or greater than INT_MAX"));
 	if (t->nbr_philo <= 0 || t->t_die <= 0 || t->t_eat <= 0 || t->t_sleep <= 0)
-		return (error("Negative or null numbers not llowed"));
+		return (error("Negative or null numbers not allowed"));
 	if (t->t_die < 60 || t->t_eat < 60 || t->t_sleep < 60)
 		return (error("Timestamps need to be greater than 60ms"));
 	if (argv[5] && (t->max_meals > INT_MAX || t->max_meals <= 0))
 		return (error("Number of meals needs to be greater than 0 and smaller"
 						"than INT_MAX"));
-	t->t_die *= 1000;
-	t->t_eat *= 1000;
-	t->t_sleep *= 1000;
+	// t->t_die *= 1000;
+	// t->t_eat *= 1000;
+	// t->t_sleep *= 1000;
+	return (0);
+}
+
+long	gettime(t_time_code time_code)
+{
+	struct  timeval tv;
+	if (gettimeofday(&tv, NULL))
+		error("gettimeofday failed");
+	if (time_code == SECOND)
+		return (tv.tv_sec + tv.tv_usec / 1000000);
+	else if (time_code == MILLISECOND)
+		return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	else if (time_code == MICROSECOND)
+		return (tv.tv_sec * 100000 + tv.tv_usec);
+	else 
+		error("Wrong input to gettime!");
 	return (0);
 }
 
